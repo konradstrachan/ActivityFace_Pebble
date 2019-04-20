@@ -1,0 +1,36 @@
+{
+    "author": "Konrad Strachan",
+    "dependencies": {
+        "pebble-clay": "^1.0.1"
+    },
+    "keywords": [],
+    "name": "activityface",
+    "pebble": {
+        "capabilities": [
+            "configurable",
+            "health"
+        ],
+        "displayName": "Activity Face",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "CONFIG_SHOWEMOJI",
+            "CONFIG_DATEFORMAT"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "fdb243f6-5d21-4fd6-9920-6bd3ad1277ec",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.11.0"
+}

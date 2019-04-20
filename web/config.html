@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ActivityFace Configuration</title>
+	</head>
+	<body>
+		<img src="https://dl.dropbox.com/s/gy9y74n80gw40h3/header.jpg"/>
+		<h1>ActvityFace options</h1>
+		<input id='enable_emoji_checkbox' type='checkbox' checked><b>Show emoji motivator</b></input>
+		<p>
+		The watchface has a friendly emoji next to the date that will provide feedback based on how active you are relative to
+		your historical activity for the previous week. This small little icon provides a little personality to your wrist.
+		Uncheck to disable.
+		</p>
+		<br/>
+		<input id='enable_alternative_date' type='checkbox'><b>Use alternative date format</b></input>
+		<p>
+		By default the date format is DD-MM. To use the MM-DD date format more common in North America, select this option.
+		</p>
+		<br/>
+		<input id='submit_button' type='button' value='Update'>
+
+		<script>
+		// Get a handle to the button's HTML element
+		var submitButton = document.getElementById('submit_button');
+
+		// Add a 'click' listener
+		submitButton.addEventListener('click', function() {
+
+		// Get the config data from the UI elements
+		var enableEmojiCheckbox = document.getElementById('enable_emoji_checkbox');
+		var alternativeDateCheckbox = document.getElementById('enable_alternative_date');
+
+		// Make a data object to be sent, coercing value types to integers
+		var options = {
+		  'show_emoji': ( enableEmojiCheckbox.checked ? 1 : 0 ),
+		  'date_format': ( alternativeDateCheckbox.checked ? 1 : 0 )
+		};
+
+		// Determine the correct return URL (emulator vs real watch)
+		function getQueryParam(variable, defaultValue) {
+		  var query = location.search.substring(1);
+		  var vars = query.split('&');
+		  for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split('=');
+			if (pair[0] === variable) {
+			  return decodeURIComponent(pair[1]);
+			}
+		  }
+		  return defaultValue || false;
+		}
+		var return_to = getQueryParam('return_to', 'pebblejs://close#');
+
+		// Encode and send the data when the page closes
+		document.location = return_to + encodeURIComponent(JSON.stringify(options));
+		});
+		</script>
+	</body>
+</html>
